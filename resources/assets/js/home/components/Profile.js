@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import jwt_decode from "jwt-decode";
 import { getUser } from "./UserFunctions";
-import { Table, Button } from "reactstrap";
+import { Table, Button} from "reactstrap";
 
 class Profile extends Component {
   constructor() {
@@ -36,7 +36,7 @@ class Profile extends Component {
       
     return (
       <div className="jumbotron mt-5">
-          <h1 className="text-center">PROFILE</h1>{" "}
+          <h1 className="text-center mt-3 mb-5">MY PROFILE</h1>{" "}
         <div className="col-sm-8 mx-auto">
         </div>
         <Table>

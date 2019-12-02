@@ -15,8 +15,11 @@ Route.group(() => {
 
 
 Route.group(()=>{
-    Route.post("login", 'UserController.login')
-    Route.post("register", "UserController.register");
-    Route.get("getuser/:id", "UserController.show");
-    Route.post('logout', 'UserController.logout')
+    Route.post("login", 'UserController.login') //to login
+    Route.post("register", "UserController.register"); //to register
+    Route.get("getuser/:id", "UserController.show"); //to show user logged in user
+    Route.get("allusers", "UserController.index"); //to show all
+    // Route.post("updateuser/:id", "UserController.update");
+    Route.post("deleteuser/:id", "UserController.delete");
+    Route.get('logout', 'UserController.logout')
 }).prefix('users')

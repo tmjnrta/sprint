@@ -29,6 +29,7 @@ export const login = user => {
       console.log('Invalid Username and password, ' + err)
     })
 };
+
 export const getUser = id => {
   return axios
     .get(`users/getuser/${id}`)
