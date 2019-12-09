@@ -1,11 +1,11 @@
 "use strict";
 
-/** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.get("/", ({ response }) => response.redirect("home"));
-
 const Helpers = use("Helpers");
-const home = Helpers.appRoot("routes/home/");
+const home = Helpers.appRoot("routes/Home/");
+const user = Helpers.appRoot("routes/User/");
 
 require(home + "home");
+require(user + "auth"); //for login and logout
+require(user + "user-management"); //for adding, editing, etc.

@@ -6,7 +6,10 @@ class TranslationController {
 
     let translationData = {
       home: this._getHomeTranslation(antl),
-      shared: this._getSharedTranslation(antl)
+      shared: this._getSharedTranslation(antl),
+      login: this._getLoginTranslation(antl),
+      register: this._getRegisterTranslation(antl),
+      general: this._getGeneralTranslation(antl)
     };
 
     let translations =
@@ -18,6 +21,22 @@ class TranslationController {
   _getHomeTranslation(Antl) {
     return {
       home: Antl.get("home.home")
+    };
+  }
+
+  _getGeneralTranslation(Antl) {
+    return {
+      validation: Antl.get("general-validation.validation")
+    };
+  }
+  _getLoginTranslation(Antl) {
+    return {
+      login: Antl.get("login.label")
+    };
+  }
+  _getRegisterTranslation(Antl) {
+    return {
+      register: Antl.get("register.label")
     };
   }
 

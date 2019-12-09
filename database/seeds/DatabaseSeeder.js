@@ -12,7 +12,7 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
-const UserSeeder = require("./UserSeeder");
+const UserSeeder = use("./UserSeeder");
 const UserTypeSeeder = use("./UserTypeSeeder");
 
 class DatabaseSeeder {

@@ -1,8 +1,7 @@
-
-
 "use strict";
 
 const Route = use("Route");
+Route.get("/", ({ response }) => response.redirect("home"));
 
 Route.group(() => {
   Route.get("/", "HomeController.view");
@@ -11,15 +10,3 @@ Route.group(() => {
 })
   .prefix("home")
   .namespace("Home");
-
-
-
-Route.group(()=>{
-    Route.post("login", 'UserController.login') //to login
-    Route.post("register", "UserController.register"); //to register
-    Route.get("getuser/:id", "UserController.show"); //to show user logged in user
-    Route.get("allusers", "UserController.index"); //to show all
-    // Route.post("updateuser/:id", "UserController.update");
-    Route.post("deleteuser/:id", "UserController.delete");
-    Route.get('logout', 'UserController.logout')
-}).prefix('users')

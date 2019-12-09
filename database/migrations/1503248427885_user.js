@@ -15,8 +15,8 @@ class UserSchema extends Schema {
         .string("username", 254)
         .notNullable()
         .unique();
-      table.string("password", 60).notNullable();
       table.string("role_id", 60).notNullable();
+      table.string("password", 60).notNullable();
       table.timestamps();
       table.timestamp("deleted_at").nullable();
     });

@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { getList, addToList, deleteItem, updateItem } from './ListFunctions'
+import React, { Component } from "react";
+import { getList } from "./UserFunctions";
 
 class List extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       first_name: "",
       middle_name: "",
@@ -13,20 +13,20 @@ class List extends Component {
       role_id: "",
       editDisabled: false,
       users: []
-    }
+    };
 
-    this.onSubmit = this.onSubmit.bind(this)
-    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    this.getAll()
+    this.getAll();
   }
 
   onChange = event => {
-    this.setState({ name: event.target.value, editDisabled: 'disabled' })
-    console.log(this.state.editDisabled)
-  }
+    this.setState({ name: event.target.value, editDisabled: "disabled" });
+    console.log(this.state.editDisabled);
+  };
 
   getAll = () => {
     getList().then(data => {
@@ -44,46 +44,46 @@ class List extends Component {
           console.log(this.state.users);
         }
       );
-    })
-  }
+    });
+  };
 
   onSubmit = e => {
-    e.preventDefault()
-    this.setState({ editDisabled: false })
+    e.preventDefault();
+    this.setState({ editDisabled: false });
     addToList(this.state.name).then(() => {
-      this.getAll()
-    })
-  }
+      this.getAll();
+    });
+  };
 
   onUpdate = e => {
-    e.preventDefault()
-    this.setState({ editDisabled: false })
+    e.preventDefault();
+    this.setState({ editDisabled: false });
     updateItem(this.state.name, this.state.id).then(() => {
-      this.getAll()
-    })
-  }
+      this.getAll();
+    });
+  };
 
   onEdit = (item, itemid, e) => {
-    e.preventDefault()
+    e.preventDefault();
     this.setState({
       id: itemid,
       name: item
-    })
-  }
+    });
+  };
 
-  onDelete = (val, e) => {
-    e.preventDefault()
-    deleteItem(val)
+  onDelete = (id, e) => {
+    e.preventDefault();
+    deleteItem(id);
 
-    var data = [...this.state.users]
-    data.filter(function(item, index) {
-      if (item[1] === val) {
-        data.splice(index, 1)
+    var data = [...this.state.users];
+    data.filter((user, index) => {
+      if (user[0] === id) {
+        data.splice(index, 1);
       }
-      return true
-    })
-    this.setState({ users: [...data] })
-  }
+      return true;
+    });
+    this.setState({ users: [...data] });
+  };
 
   render() {
     return (
@@ -100,26 +100,26 @@ class List extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.users.map(item => (
-              <tr key={item.id}>
-                <td className="text-left">{item[0]}</td>
-                <td className="text-left">{item[1]}</td>
-                <td className="text-left">{item[2]}</td>
-                <td className="text-left">{item[3]}</td>
-                <td className="text-left">{item[4]}</td>
+            {this.state.users.map((user, idx) => (
+              <tr key={idx}>
+                <td className="text-left">{user[1]}</td>
+                <td className="text-left">{user[2]}</td>
+                <td className="text-left">{user[3]}</td>
+                <td className="text-left">{user[4]}</td>
+                <td className="text-left">{user[5]}</td>
                 <td className="text-right ">
                   <button
                     href=""
                     className="btn btn-info mr-1"
                     disabled={this.state.editDisabled}
-                    onClick={this.onEdit.bind(this, item[0], item[1])}
+                    onClick={this.onEdit.bind(this, user[0], user[1])}
                   >
                     Edit
                   </button>
                   <button
                     href=""
                     className="btn btn-danger"
-                    onClick={this.onDelete.bind(this, item[1])}
+                    onClick={this.onDelete.bind(this, user[0])}
                   >
                     Delete
                   </button>
@@ -133,4 +133,4 @@ class List extends Component {
   }
 }
 
-export default List
+export default List;

@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import TmjPrompt from "Shared/TmjPrompt";
-import { axios } from "Shared/bootstrap";
-import Header from "../shared/components/Header";
-
+import Header from "../../shared/components/Header";
 import Loadable from "react-loadable";
 import { Link, Route, HashRouter, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
@@ -16,36 +13,21 @@ const Loading = ({ error }) => {
 };
 
 const Home = Loadable({
-  loader: () => import("../home/components/Home"),
-  loading: Loading
-});
-
-const Register = Loadable({
-  loader: () => import("../home/components/Register"),
+  loader: () => import("../../users/user-management/components/Home"),
   loading: Loading
 });
 
 const Login = Loadable({
-  loader: () => import("../home/components/Login"),
+  loader: () => import("../../users/auth/components/Login"),
   loading: Loading
 });
 
-
-const SampleReactLoadableRouterContainer = Loadable({
-  loader: () =>
-    import(
-      "../sample/sample-react-loadable-router/SampleReactLoadableRouterContainer"
-    ),
+const Register = Loadable({
+  loader: () => import("../../users/user-management/components/Register"),
   loading: Loading
 });
 
- const logout = (e) => {
-    e.preventDefault()
-    localStorage.removeItem('usertoken')
-    this.props.history.push('/login')
-  }
-
-export default class ProjectContainer extends Component {
+export default class UsersContainer extends Component {
   render() {
     return (
       <HashRouter>
